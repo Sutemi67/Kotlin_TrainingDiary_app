@@ -17,7 +17,7 @@
         android:title="@string/title_running" />
     <item
         android:id="@+id/timerFragment"
-        android:icon="@drawable/ic_running"
+        android:icon="@drawable/ic_timer"
         android:title="@string/title_timer" />
 
 </menu>
