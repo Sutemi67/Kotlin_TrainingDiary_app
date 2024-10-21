@@ -3,4 +3,5 @@
     <string name="title_home">Home</string>
     <string name="title_gym">GYM</string>
     <string name="title_running">Running</string>
+    <string name="title_timer">Timer</string>
 </resources>

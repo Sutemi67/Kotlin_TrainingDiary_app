@@ -22,4 +22,9 @@
         android:name="apc.appcradle.trainingdiary.ui.notifications.RunningFragment"
         android:label="@string/title_running"
         tools:layout="@layout/fragment_running" />
+    <fragment
+        android:id="@+id/timerFragment"
+        android:name="apc.appcradle.trainingdiary.ui.timer.TimerFragment"
+        android:label="fragment_timer"
+        tools:layout="@layout/fragment_timer" />
 </navigation>
