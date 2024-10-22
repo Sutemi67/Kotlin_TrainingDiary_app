@@ -28,7 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
-        android:text="time is here"
+        android:text="Ready?"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/greetings" />
@@ -56,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/start" />
 
     <Button
-        android:id="@+id/stop"
+        android:id="@+id/end_and_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
