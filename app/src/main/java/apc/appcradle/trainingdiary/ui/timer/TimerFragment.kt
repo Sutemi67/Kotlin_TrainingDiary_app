@@ -1,28 +1,23 @@
 package apc.appcradle.trainingdiary.ui.timer
 
 import android.annotation.SuppressLint
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
-import apc.appcradle.trainingdiary.R
 import apc.appcradle.trainingdiary.databinding.FragmentTimerBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TimerFragment : Fragment() {
     private lateinit var timerTextView: TextView
     private lateinit var countDownTimer: CountDownTimer
     private var isRunning = false
     private var timeLeftInMillis: Long = 10000 // 1 минута
-    private var userInterval: Long = 10 // Интервал для отправки уведомлений (в секундах)
     private lateinit var binding: FragmentTimerBinding
+    private val vm by viewModel<TimerViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +53,7 @@ class TimerFragment : Fragment() {
             }
 
             override fun onFinish() {
-                sendNotification("Таймер завершен!")
+                vm.sendNotification("Timer has ended")
                 isRunning = false
             }
         }
@@ -73,29 +68,6 @@ class TimerFragment : Fragment() {
 
         val timeFormatted = String.format("%02d:%02d", minutes, seconds)
         timerTextView.text = timeFormatted
-    }
-
-    private fun sendNotification(message: String) {
-        val notificationManager =
-            requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                "timer_channel",
-                "Timer Notifications",
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        val notification = NotificationCompat.Builder(requireContext(), "timer_channel")
-            .setContentTitle("Таймер")
-            .setContentText(message)
-            .setSmallIcon(R.drawable.ic_timer)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .build()
-
-        notificationManager.notify(1, notification)
     }
 
     companion object {

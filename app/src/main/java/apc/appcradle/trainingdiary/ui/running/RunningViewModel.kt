@@ -23,16 +23,13 @@ class RunningViewModel(
     private val _timeElapsed = MutableLiveData<Long>()
     val timeElapsed: LiveData<Long> = _timeElapsed
 
-    private val _timeRunLiveData = MutableLiveData(getRunTime())
-    val timeRunLiveData: LiveData<Long> = _timeRunLiveData
-
     fun startStopwatch() {
         if (stopwatchJob == null || stopwatchJob?.isCancelled == true) {
             stopwatchJob = viewModelScope.launch {
                 while (true) {
-                    delay(1000L) // Каждую секунду
+                    delay(1000L)
                     timeRunToday++
-                    _timeElapsed.postValue(timeRunToday) // Обновляем LiveData
+                    _timeElapsed.postValue(timeRunToday)
                 }
             }
         }

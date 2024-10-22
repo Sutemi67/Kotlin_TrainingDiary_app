@@ -11,5 +11,5 @@ val appModule = module {
     viewModel<GymViewModel> { GymViewModel() }
     viewModel<HomeViewModel> { HomeViewModel(get()) }
     viewModel<RunningViewModel> { RunningViewModel(get()) }
-    viewModel<TimerViewModel> { TimerViewModel() }
+    viewModel<TimerViewModel> { TimerViewModel(get()) }
 }
