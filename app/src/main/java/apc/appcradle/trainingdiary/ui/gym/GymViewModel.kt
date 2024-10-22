@@ -1,4 +1,4 @@
-package apc.appcradle.trainingdiary.ui.dashboard
+package apc.appcradle.trainingdiary.ui.gym
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

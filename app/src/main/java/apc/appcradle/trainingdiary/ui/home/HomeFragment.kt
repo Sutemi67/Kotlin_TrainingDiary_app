@@ -1,37 +1,36 @@
 package apc.appcradle.trainingdiary.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import apc.appcradle.trainingdiary.databinding.FragmentHomeBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentHomeBinding
+    private val vm by viewModel<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this)[HomeViewModel::class.java]
-
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) { textView.text = it }
-        return root
+        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        vm.greeting.observe(viewLifecycleOwner) { binding.textHome.text = it }
+        binding.runBeforeCount.text = getRunBefore()
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    @SuppressLint("DefaultLocale")
+    private fun getRunBefore(): String {
+        val gotTime = vm.getRunTime()
+        val hours = gotTime / 360
+        val minutes = gotTime / 60
+        val seconds = gotTime % 60
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds)
     }
 }

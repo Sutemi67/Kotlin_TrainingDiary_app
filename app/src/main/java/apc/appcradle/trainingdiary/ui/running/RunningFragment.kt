@@ -1,4 +1,4 @@
-package apc.appcradle.trainingdiary.ui.notifications
+package apc.appcradle.trainingdiary.ui.running
 
 import android.annotation.SuppressLint
 import android.os.Bundle

@@ -5,5 +5,5 @@ import apc.appcradle.trainingdiary.domain.InteractorInterface
 import org.koin.dsl.module
 
 val domainModule = module {
-    single<InteractorInterface> { Interactor() }
+    single<InteractorInterface> { Interactor(get()) }
 }

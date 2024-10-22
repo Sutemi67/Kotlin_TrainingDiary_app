@@ -1,4 +1,4 @@
-package apc.appcradle.trainingdiary.ui.dashboard
+package apc.appcradle.trainingdiary.ui.gym
 
 import android.os.Bundle
 import android.view.LayoutInflater
