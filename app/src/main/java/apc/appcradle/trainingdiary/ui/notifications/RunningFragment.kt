@@ -6,39 +6,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import apc.appcradle.trainingdiary.databinding.FragmentRunningBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RunningFragment : Fragment() {
 
-    private var _binding: FragmentRunningBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentRunningBinding
+    private val vm by viewModel<RunningViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val runningViewModel =
-            ViewModelProvider(this)[RunningViewModel::class.java]
-
-        _binding = FragmentRunningBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textRunning
-        runningViewModel.text.observe(viewLifecycleOwner) {
+        binding = FragmentRunningBinding.inflate(layoutInflater, container, false)
+        val textView: TextView = binding.greetings
+        vm.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        binding.start
     }
 }
