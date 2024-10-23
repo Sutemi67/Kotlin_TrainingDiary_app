@@ -91,7 +91,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="100dp"
-        android:backgroundTint="#2A9716"
+        android:backgroundTint="@color/start_green"
         android:text="@string/button_start"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="@+id/inputHours"
@@ -105,7 +105,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="100dp"
-        android:backgroundTint="#D75347"
+        android:backgroundTint="@color/stop_red"
         android:text="stop"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="@+id/start_button"
@@ -116,9 +116,9 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:text="Auto repeat after ending?"
+        app:layout_constraintEnd_toEndOf="@+id/stop_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stop_button" />
 
@@ -126,9 +126,9 @@
         android:id="@+id/switcherUnlimitedCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

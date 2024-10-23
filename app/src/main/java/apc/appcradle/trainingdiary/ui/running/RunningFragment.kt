@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import apc.appcradle.trainingdiary.R
 import apc.appcradle.trainingdiary.databinding.FragmentRunningBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -31,9 +34,13 @@ class RunningFragment : Fragment() {
     @SuppressLint("DefaultLocale")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.start.setOnClickListener { vm.startStopwatch() }
         binding.pause.setOnClickListener { vm.stopStopwatch() }
-        binding.endAndReset.setOnClickListener { vm.resetStopwatch() }
+        binding.endAndReset.setOnClickListener {
+            vm.resetStopwatch()
+            findNavController().navigate(R.id.navigation_home)
+        }
 
         vm.timeElapsed.observe(viewLifecycleOwner) { timeInSeconds ->
             val hours = timeInSeconds / 360
