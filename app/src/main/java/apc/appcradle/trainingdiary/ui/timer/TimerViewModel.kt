@@ -14,24 +14,27 @@ class TimerViewModel(
 ) : ViewModel() {
 
     private var timerJob: Job? = null
-    private var timeLeftInMillis: Long = 0
+    private var timeLeftInSeconds: Long = 0L
 
     private val _timeLeft = MutableLiveData(0L)
     val timeLeft: LiveData<Long> = _timeLeft
 
     private fun sendNotification(text: String) = notification.sendNotification(text)
 
-    fun startTimer(timeLeft: Long) {
+    fun startTimer(timeLeft: Long, switcher: Boolean, message: String) {
         if (timerJob == null || timerJob?.isCancelled == true) {
-            timeLeftInMillis = timeLeft * 1000
+            timeLeftInSeconds = timeLeft
             timerJob = viewModelScope.launch {
-                while (timeLeftInMillis != 0L) {
+                while (timeLeftInSeconds != 0L) {
                     delay(1000L)
-                    timeLeftInMillis -= 1000L
-                    _timeLeft.postValue(timeLeftInMillis)
+                    timeLeftInSeconds--
+                    _timeLeft.postValue(timeLeftInSeconds)
                 }
                 stopTimer()
-                sendNotification("Timer ended")
+                sendNotification(message)
+                if (switcher) {
+                    startTimer(timeLeft, true, message)
+                }
             }
         }
     }

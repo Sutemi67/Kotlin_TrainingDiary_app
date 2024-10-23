@@ -12,6 +12,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class TimerFragment : Fragment() {
     private lateinit var binding: FragmentTimerBinding
     private val vm by viewModel<TimerViewModel>()
+    private var inputConvert = 0L
+    private var message = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,22 +33,40 @@ class TimerFragment : Fragment() {
 
     @SuppressLint("DefaultLocale")
     private fun updateTimerText(time: Long) {
-        val hours = (time / 1000) / 360
-        val minutes = (time / 1000) / 60
-        val seconds = (time / 1000) % 60
+        val hours = time / 3600
+        val minutes = (time % 3600) / 60
+        val seconds = time % 60
         val timeFormatted = String.format("%02d:%02d:%02d", hours, minutes, seconds)
         binding.counter.text = timeFormatted
     }
 
     private fun setOnClickListeners() {
         binding.startButton.setOnClickListener {
-            if (!binding.input.text.isNullOrEmpty()) {
-                vm.startTimer(binding.input.text.toString().toLong())
+            message = if (binding.inputMessage.text.isNullOrEmpty()) {
+                "Timer is ended"
+            } else {
+                binding.inputMessage.text.toString()
+            }
+            inputConvert = 0L
+            if (!binding.inputHours.text.isNullOrEmpty()) {
+                inputConvert += binding.inputHours.text.toString().toLong() * 3600
+            }
+            if (!binding.inputMinutes.text.isNullOrEmpty()) {
+                inputConvert += binding.inputMinutes.text.toString().toLong() * 60
+            }
+            if (!binding.inputSeconds.text.isNullOrEmpty()) {
+                inputConvert += binding.inputSeconds.text.toString().toLong()
+            }
+            if (binding.switcherUnlimitedCounter.isChecked) {
+                vm.startTimer(inputConvert, true, message)
+            } else {
+                vm.startTimer(inputConvert, false, message)
             }
         }
         binding.stopButton.setOnClickListener {
             vm.stopTimer()
         }
+
     }
 
     companion object {

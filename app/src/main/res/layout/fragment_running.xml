@@ -17,7 +17,6 @@
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:backgroundTint="@color/start_green"
-        android:text="begin"
+        android:text="go to run"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timer_text" />
@@ -47,7 +46,7 @@
         android:id="@+id/pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="45dp"
         android:backgroundTint="@color/pause_yellow"
         android:text="pause"
         app:layout_constraintEnd_toEndOf="@+id/start"
@@ -58,7 +57,7 @@
         android:id="@+id/end_and_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="45dp"
         android:backgroundTint="@color/stop_red"
         android:text="end running"
         app:layout_constraintEnd_toEndOf="@+id/pause"
