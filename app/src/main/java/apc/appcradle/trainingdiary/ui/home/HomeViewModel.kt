@@ -11,14 +11,14 @@ class HomeViewModel(
 ) : ViewModel() {
 
     private val _greeting =
-        MutableLiveData("Good day!\nToday you trained about 2hrs.\nCongrats.\nIf you want, you can choose another training in menu below.")
+        MutableLiveData("Have a good day!\n\nKeep going in your progress!\nConsistency - is a key.")
     val greeting: LiveData<String> = _greeting
 
     @SuppressLint("DefaultLocale")
     fun getRunBefore(): String {
         val gotTime = interactor.getRunTime()
-        val hours = gotTime / 360
-        val minutes = gotTime / 60
+        val hours = gotTime / 3600
+        val minutes = (gotTime % 3600) / 60
         val seconds = gotTime % 60
         return String.format("%02d:%02d:%02d", hours, minutes, seconds)
     }
