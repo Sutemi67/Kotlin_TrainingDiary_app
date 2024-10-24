@@ -24,4 +24,11 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        vm.loadTheme(binding.switchThemeIcon)
+        binding.switchThemeIcon.setOnClickListener {
+            vm.changeTheme(binding.switchThemeIcon)
+        }
+    }
 }
